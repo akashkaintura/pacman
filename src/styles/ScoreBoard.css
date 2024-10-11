@@ -1,0 +1,23 @@
+.scoreboard {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #ffcc00;
+}
+
+.scoreboard h2 {
+    margin: 5px 0;
+}
+
+
+.score-popup {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffcc00;
+    animation: scorePopup 1s ease-out forwards;
+}
+
+@keyframes scorePopup {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+}

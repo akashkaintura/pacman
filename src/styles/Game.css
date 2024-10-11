@@ -1,0 +1,44 @@
+.game-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    border: 2px solid #fff;
+    background-color: #000;
+}
+.point {
+    width: 10px;
+    height: 10px;
+    background-color: #ffcc00;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.game-grid {
+    position: relative;
+    width: 400px; /* Set appropriate width */
+    height: 400px; /* Set appropriate height */
+    border: 2px solid #fff;
+    background-color: #000;
+    margin: 20px auto;
+}
+
+
+/* Add this to Game.css */
+.pacman, .ghost {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+
+.pacman {
+    background-color: #ffcc00;
+    border-radius: 50%;
+    transition: all 0.1s;
+}
+
+.ghost {
+    background-color: #ff0000;
+    border-radius: 50%;
+    transition: all 0.1s;
+}
+
