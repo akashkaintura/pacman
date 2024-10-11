@@ -6,7 +6,6 @@ import collisionSoundFile from '../assets/sounds/pacman_eatghost.mp3';
 import pointSoundFile from '../assets/sounds/pacman_extrapac.mp3';
 
 const GameGrid = ({ level, loseLife, setScore, onLevelComplete }) => {
-    // Function to generate random points on the grid
     const generatePoints = () => {
         let pointsArray = [];
         for (let i = 0; i < 10; i++) {
@@ -20,6 +19,10 @@ const GameGrid = ({ level, loseLife, setScore, onLevelComplete }) => {
     const [points, setPoints] = useState(generatePoints()); // Call generatePoints here
     const [direction, setDirection] = useState('right');
     const [isPoweredUp, setIsPoweredUp] = useState(false);
+
+    console.log("Rendering GameGrid");
+    console.log("Pacman Position:", pacmanPosition);
+    console.log("Ghost Position:", ghosts);
 
     const chompSound = new Audio(chompSoundFile);
     const collisionSound = new Audio(collisionSoundFile);
@@ -49,6 +52,10 @@ const GameGrid = ({ level, loseLife, setScore, onLevelComplete }) => {
             default:
                 return;
         }
+
+        newPosition.x = Math.max(0, Math.min(19, newPosition.x));
+        newPosition.y = Math.max(0, Math.min(19, newPosition.y));
+
         setPacmanPosition(newPosition);
         setDirection(newDirection);
         chompSound.play();
@@ -96,9 +103,14 @@ const GameGrid = ({ level, loseLife, setScore, onLevelComplete }) => {
     };
 
     useEffect(() => {
+        console.log("useEffect: Adding event listener and interval");
         window.addEventListener('keydown', handleKeyPress);
-        return () => window.removeEventListener('keydown', handleKeyPress);
-    }, [pacmanPosition]);
+
+        return () => {
+            console.log("useEffect Cleanup: Removing event listener and interval");
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [pacmanPosition, ghosts]);
 
     useEffect(() => {
         checkCollisions();
